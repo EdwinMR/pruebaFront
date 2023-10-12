@@ -1,0 +1,43 @@
+<div class="form-wraper">
+    <div class="form-container card">
+        <div class="form-header">
+            <h2 class="form-title">Registro</h2>
+        </div>
+
+        <form [formGroup]="formUser" (ngSubmit)="register()">
+            <div class="form-body">
+                <mat-form-field class="justifier" appearance="fill">
+                    <mat-label>Correo electrónico</mat-label>
+                    <input matInput placeholder="example@example.example" type="email" class="form-input" required
+                        formControlName="email">
+                    <mat-error *ngIf="email == 'required'">Correo electrónico es necesario</mat-error>
+                    <mat-error *ngIf="email=='format'">Correo electrónico invalido</mat-error>
+                </mat-form-field>
+                <mat-form-field class="justifier">
+                    <mat-label>Contraseña</mat-label>
+                    <input matInput placeholder="Example123!" type="password" class="form-input" name="password"
+                        formControlName="password" required>
+                    <mat-error *ngIf="pass == 'required'">Contraseña necesaria</mat-error>
+                    <mat-error *ngIf="pass=='pattern'">Contraseña invalido</mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Favorite car</mat-label>
+                    <select matNativeControl  formControlName="role" name="car">
+                      <option value="" selected></option>
+                      <option *ngFor="let item of roles" [value]="item.name">
+                        {{item.name}}
+                      </option>
+                    </select>
+                  </mat-form-field>
+            </div>
+            <div class="form-footer">
+                <button mat-raised-button class="btn custom-btn" [disabled]="formUser.invalid">
+                    Entrar
+                </button>
+            </div>
+        </form>
+        <div class="additional-link">
+            <a routerLink="/login">Tienes cuenta? <strong>Login</strong></a>
+        </div>
+    </div>
+</div>
